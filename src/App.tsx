@@ -1,25 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import axios from "axios";
+
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
+import "./App.css";
+import HomePage from "./Pages/home";
+import Auth from "./Pages/auth";
+import PatientProfile from "./Pages/patient-profile";
+import PriorAuthForm from "./Pages/prior-auth-form";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<Navigate to="/auth" />} />
+          <Route path="/auth" element={<Auth />} />
+          <Route path="/home" element={<HomePage />} />
+          <Route path="/patient-profile/:email" element={<PatientProfile />} />
+          {/* <Route path="/prior-auth-form/:id" element={<PriorAuthForm />} /> */}
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
